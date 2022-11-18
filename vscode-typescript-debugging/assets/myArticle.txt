@@ -1,0 +1,56 @@
+Type script compiler
+
+After that we should compile the TypeScript code into plain JavaScript. 
+Create a “tsconfig.json” file in the project folder and add the following content:
+
+{
+    "compilerOptions": {
+        "outDir": "./out",
+        "rootDir": "./src",
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "target": "es5"
+    }
+}
+
+NPM-Scripts
+What we also need is the well-known “package.json” file. Simply run the following commands in your terminal to create it and to add the required dependencies:
+
+npm init --yes
+npm install typescript --save-dev
+
+Next we add the required scripts to the “package.json” file, which finally looks similar to this:
+
+{
+  "name": "vscode-typescript-debugging",
+  "version": "1.0.0",
+  "devDependencies": {
+    "typescript": "^2.7.2"
+  },
+  "scripts": {
+    "start": "node out/app.js",
+    "prestart": "npm run build",
+    "build": "tsc"
+  }
+}
+
+Short explanation of the scripts:
+
+start — run the compiled app with node
+prestart — is called automatically before the start script
+build — runs the TypeScript compiler
+
+Run the app
+Open your terminal and run the following command:
+
+npm start
+
+Eventually you should see the “Hello world!” in your terminal and the 
+compiled JavaScript-files in the “out” folder. 
+
+# Git commands
+
+Use the universal one-liner in terminal in the project directory:
+
+- On linux env
+touch .gitignore && echo "node_modules/" >> .gitignore && git rm -r --cached node_modules ; git status
