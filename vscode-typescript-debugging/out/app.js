@@ -11,26 +11,15 @@ var App = /** @class */ (function () {
     };
     return App;
 }());
-App.Start();
-var sonar = new myClasses_1.Sonar();
-sonar.ping();
-var d = new myClasses_1.Derived();
-d.greet();
-d.greet("reader");
-var b = d;
-b.greet();
-var MyClass = /** @class */ (function () {
-    function MyClass() {
-    }
-    return MyClass;
-}());
-if (b instanceof myClasses_1.Derived) {
-    console.log("".concat(b, " is instance of type 'Derived'."));
-}
-if (b instanceof myClasses_1.Base) {
-    console.log("".concat(b, " is instance of type 'Base'."));
-}
-if (!(b instanceof MyClass)) {
-    console.log("".concat(typeof b, " is not instance of type 'MyClass'."));
-}
+var obj = new myClasses_1.MsgError("world");
+obj.sayHello();
+//App.Start();
+// const sonar : IPingable = new Sonar();
+// sonar.ping();
+// const d = new Derived();
+// d.greet();
+// d.greet("reader");
+// const b: Base = d;
+// b.greet();
+// (b as Derived).greet("Calling from Base class reference.");
 //# sourceMappingURL=app.js.map

@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Sonar = exports.Derived = exports.Base = exports.GoodGreater = void 0;
+exports.MsgError = exports.Sonar = exports.Derived = exports.Base = exports.GoodGreater = void 0;
 var GoodGreater = /** @class */ (function () {
     function GoodGreater(otherName) {
         this.name = "world";
@@ -27,7 +27,9 @@ var GoodGreater = /** @class */ (function () {
 }());
 exports.GoodGreater = GoodGreater;
 ;
-// Overriding methods
+// OVERRIDE METHODS
+// us super. syntax to access base class methods.
+// Typescript enforces that a derived class is always a subtype of its base class.
 var Base = /** @class */ (function () {
     function Base() {
     }
@@ -84,4 +86,44 @@ var Sonar = /** @class */ (function () {
     return Sonar;
 }());
 exports.Sonar = Sonar;
+// Type-only Field Declarations
+// class fields are initialized after the parent class constructor completes, overwriting any value set by the parent class. 
+// inicialization order 
+var NewBase = /** @class */ (function () {
+    function NewBase() {
+        this.name = "base";
+        console.log("My name is " + this.name);
+    }
+    return NewBase;
+}());
+var NewDerived = /** @class */ (function (_super) {
+    __extends(NewDerived, _super);
+    function NewDerived() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = "derived";
+        return _this;
+    }
+    return NewDerived;
+}(NewBase));
+// Prints "base", not "derived"
+var d = new NewDerived();
+// What happened here?
+// The order of class initialization, as defined by JavaScript, is:
+// The base class fields are initialized
+// The base class constructor runs
+// The derived class fields are initialized
+// The derived class constructor runs
+// This means that the base class constructor saw its own value for name during its own constructor, because the derived class field initializations hadn’t run yet.
+// Inheriting Built-in Types
+var MsgError = /** @class */ (function (_super) {
+    __extends(MsgError, _super);
+    function MsgError(m) {
+        return _super.call(this, m) || this;
+    }
+    MsgError.prototype.sayHello = function () {
+        return "hello" + this.message;
+    };
+    return MsgError;
+}(Error));
+exports.MsgError = MsgError;
 //# sourceMappingURL=myClasses.js.map

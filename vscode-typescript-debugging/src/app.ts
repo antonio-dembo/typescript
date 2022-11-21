@@ -1,5 +1,5 @@
 import { hello, greet , printCoord, printName, printId, newPrintCoord, doSomething, liveDangerously, Direction, respond, UserResponse, printImportant, greater } from './hello';
-import { GoodGreater, Derived, IPingable, Sonar, Base } from "./myClasses";
+import { GoodGreater, Derived, IPingable, Sonar, Base, Box } from "./myClasses";
 
 class App {
     /** Entry point of our code */
@@ -8,29 +8,18 @@ class App {
     }
 }
 
-App.Start();
+const b = new Box("Hello!");
 
-const sonar : IPingable = new Sonar();
-sonar.ping();
+//App.Start();
 
-const d = new Derived();
-d.greet();
-d.greet("reader");
+// const sonar : IPingable = new Sonar();
+// sonar.ping();
 
-const b: Base = d;
-b.greet();
+// const d = new Derived();
+// d.greet();
+// d.greet("reader");
 
-class MyClass {
-}
+// const b: Base = d;
+// b.greet();
 
-if ( b as Derived instanceof Derived) {
-    console.log(`${b} is instance of type 'Derived'.`);
-}
-
-if( b as Base instanceof Base){
-    console.log(`${b} is instance of type 'Base'.`);
-}
-
-if( !(b instanceof MyClass)){
-    console.log(`${typeof b} is not instance of type 'MyClass'.`);
-}
+// (b as Derived).greet("Calling from Base class reference.");

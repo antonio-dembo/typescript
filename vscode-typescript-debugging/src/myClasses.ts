@@ -14,10 +14,13 @@ export class GoodGreater {
 
 };
 
-// Overriding methods
+// OVERRIDE METHODS
+// us super. syntax to access base class methods.
+// Typescript enforces that a derived class is always a subtype of its base class.
+
 export class Base {
   greet(){
-    console.log("Hello, world.");    
+    console.log("Hello, world.");
   };
 }
 
@@ -55,11 +58,11 @@ export interface IPingable {
 }
 
 export class Sonar implements IPingable {
-  ping(): void {
+  public ping(): void {
     console.log("Ping!");
   }
 
-  anotherPing() {
+  public anotherPing() {
     // do nothing
   }
 }
@@ -71,7 +74,7 @@ export class Sonar implements IPingable {
 
 class NewBase {
   name = "base";
-  constructor() {
+  public constructor() {
     console.log("My name is " + this.name);
   }
 }
@@ -93,5 +96,26 @@ const d = new NewDerived();
 
 // This means that the base class constructor saw its own value for name during its own constructor, because the derived class field initializations hadn’t run yet.
 
-// Inheriting Built-in Types
 
+// Static members are also inherited
+
+class Base2 {
+  static getGreeting(){
+    return "Hello world";
+  }
+}
+
+class Derived2 extends Base2{
+  myGreeting = Derived2.getGreeting();
+}
+
+// GENERIC CLASSES 
+export class Box<Type> {
+  contents: Type;
+  constructor(value: Type) {
+    this.contents = value;
+  }
+}
+
+// there is only one propery slot for static memebers at runtime.
+// The static members of a generic class can NEVER refer to the class’s type parameters.
