@@ -11,8 +11,11 @@ var App = /** @class */ (function () {
     };
     return App;
 }());
-var obj = new myClasses_1.MsgError("world");
-obj.sayHello();
+var db3 = new myClasses_1.DerivedBase3();
+db3.printName();
+// const a = new ClearableBox();
+// const b = a.set("Hello");
+// console.log(b.clear());
 //App.Start();
 // const sonar : IPingable = new Sonar();
 // sonar.ping();

@@ -119,3 +119,91 @@ export class Box<Type> {
 
 // there is only one propery slot for static memebers at runtime.
 // The static members of a generic class can NEVER refer to the class’s type parameters.
+
+// THIS types
+
+export class Box1{
+  contents: string = "";
+  set(value: string){
+    this.contents = value;
+    return this;
+  }
+}
+
+export class ClearableBox extends Box1 {
+  clear() {
+    this.contents = "";
+  }
+}
+
+// You can also use this in a parameter type annotation:
+
+class Box2 {
+  content: string = "";
+  sameAs(other: this) {
+    return other.content === this.content;
+  }
+}
+
+class DerivedBox1 extends Box2 {
+  otherContent: string =  "?";
+}
+
+const db1 = new DerivedBox1()
+db1.content = "Hello";
+const db2 = new DerivedBox1()
+db2.content = "hello";
+
+console.log(db1.sameAs(db2));
+
+// PARAMETER PROPRERTIES
+// are created by prefixing a constructor argument with one of the visibility modifiers public, private, protected, or readonly.
+
+export class Params {
+  constructor(
+    public readonly x: number, 
+    protected y: number,
+    private z: number
+  ) {
+      // No body necessary
+  }
+}
+
+// CLASS EXPRESSIONS
+const someClass = class<Type> {
+  content: Type
+  constructor(value: Type) {
+    this.content = value;
+  }
+}
+
+const m = new someClass("Hello World.");
+
+// ABSTRACT CLASSES AND MEMBERS
+
+//  An abstract method or abstract field is one that hasn’t had an implementation provided. 
+//These members must exist inside an abstract class, which cannot be directly instantiated.
+
+// The role of abstract classes is to serve as a base class for subclasses which do implement all the abstract members. 
+// When a class doesn’t have any abstract members, it is said to be concrete.
+
+abstract class Base3 {
+  abstract getName(): string;
+
+  printName() {
+    console.log("Hello, " + this.getName);
+  }
+}
+
+// We can’t instantiate 'Base3' with new because it’s abstract.
+//const b = new Base3();
+
+// Instead, we need to make a derived class and implement the abstract members:
+export class DerivedBase3 extends Base3 {
+  getName(): string {
+    return "world";
+  }
+};
+
+
+

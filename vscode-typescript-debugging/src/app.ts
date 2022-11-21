@@ -1,5 +1,5 @@
 import { hello, greet , printCoord, printName, printId, newPrintCoord, doSomething, liveDangerously, Direction, respond, UserResponse, printImportant, greater } from './hello';
-import { GoodGreater, Derived, IPingable, Sonar, Base, Box } from "./myClasses";
+import { GoodGreater, Derived, IPingable, Sonar, Base, Box1, ClearableBox, DerivedBase3 } from "./myClasses";
 
 class App {
     /** Entry point of our code */
@@ -8,7 +8,16 @@ class App {
     }
 }
 
-const b = new Box("Hello!");
+const db3 = new DerivedBase3();
+db3.printName();
+
+
+
+// const a = new ClearableBox();
+// const b = a.set("Hello");
+
+// console.log(b.clear());
+
 
 //App.Start();
 
